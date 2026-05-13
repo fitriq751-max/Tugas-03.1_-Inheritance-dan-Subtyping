@@ -44,12 +44,18 @@ class Manajer(Staff):
         return super().hitung_gaji() + self.bonus_jabatan + self.tunjangan_transport + self.tunjangan_kesehatan
 
     def tampilkan_data(self):
-       return super().tampilkan_data() + f"""
-       Jabatan        : Manajer
-       Bonus Jabatan  : Rp{self.bonus_jabatan:,}
-       Tunj. Transp   : Rp{self.tunjangan_transport:,}
-       Tunj. Kesehatan: Rp{self.tunjangan_kesehatan:,}
-       """
+    data_induk = Pegawai.tampilkan_data(self)
+    return data_induk + f"""
+    Jabatan            : Manajer
+    Hari Kerja         : {self.hari_kerja} hari
+    Jam Lembur         : {self.jam_lembur} jam
+    Uang Makan         : Rp{self.hitung_uang_makan():,}
+    Uang Lembur        : Rp{self.hitung_lembur():,}
+    Bonus Jabatan      : Rp{self.bonus_jabatan:,}
+    Tunj. Transport    : Rp{self.tunjangan_transport:,}
+    Tunj. Kesehatan    : Rp{self.tunjangan_kesehatan:,}
+    Gaji Total         : Rp{self.hitung_gaji():,}
+    """
     
 # 3. Kelas Supervisor (Turunan Langsung Pegawai)
 class Supervisor(Pegawai):
